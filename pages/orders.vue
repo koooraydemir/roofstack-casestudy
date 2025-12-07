@@ -75,7 +75,7 @@
       <div v-if="currentStatus !== 'new'" class="px-4 md:px-6 py-3 md:py-4">
         <h1 class="text-lg md:text-xl font-semibold text-gray-900 capitalize mb-3">{{ currentStatus.replace('-', ' ') }}</h1>
         <div class="flex items-center justify-between">
-          <div v-if="currentOrders.length > 0" class="inline-flex items-center gap-2 px-3 py-2 rounded bg-brand-light-bg">
+          <div class="inline-flex items-center gap-2 px-3 py-2 rounded bg-brand-light-bg">
             <Bars3Icon class="w-4 h-4 text-brand-dark" />
             <span class="text-sm font-bold text-brand-dark">Showing {{ currentOrders.length }} Orders</span>
           </div>
@@ -103,8 +103,18 @@
             />
           </div>
 
-          <div v-else class="flex items-center justify-center h-64">
-            <p class="text-gray-500">No {{ currentStatus.replace('-', ' ') }} orders</p>
+          <div v-else class="flex flex-col items-center justify-center h-64 text-center">
+            <div class="w-16 h-16 mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+              <DocumentTextIcon class="w-8 h-8 text-gray-400" />
+            </div>
+            <p class="text-gray-900 font-semibold text-lg mb-1">No orders yet</p>
+            <p class="text-gray-500 text-sm mb-4">There are no {{ currentStatus.replace('-', ' ') }} orders at the moment</p>
+            <button
+              @click="currentStatus = 'new'"
+              class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700"
+            >
+              Create Order
+            </button>
           </div>
         </template>
       </div>
@@ -113,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-import { Bars3Icon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, DocumentTextIcon } from '@heroicons/vue/24/outline'
 import { useOrdersStore } from '~/stores/orders'
 import type { OrderStatus } from '~/types'
 
