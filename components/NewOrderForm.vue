@@ -11,82 +11,76 @@
       <div class="lg:col-span-7 px-6 pb-6">
         <div class="space-y-4">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-bold" style="color: #737376">Order Number:</span>
-          <span class="text-sm" style="color: #171719">{{ orderNumber }}</span>
+          <span class="text-sm font-bold text-brand-gray">Order Number:</span>
+          <span class="text-sm text-brand-dark">{{ orderNumber }}</span>
         </div>
 
         <div class="flex items-center gap-2">
-          <span class="text-sm font-bold" style="color: #737376">Date & Time:</span>
-          <span class="text-sm" style="color: #171719">{{ dateTime }}</span>
+          <span class="text-sm font-bold text-brand-gray">Date & Time:</span>
+          <span class="text-sm text-brand-dark">{{ dateTime }}</span>
         </div>
 
         <div>
-          <label class="block text-sm font-bold mb-1.5" style="color: #737376">Name</label>
+          <label class="block text-sm font-bold mb-1.5 text-brand-gray">Name</label>
           <input
             v-model="formData.customerName"
             type="text"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500"
-            style="color: #171719"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold text-brand-dark focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-bold mb-1.5" style="color: #737376">Contact</label>
+          <label class="block text-sm font-bold mb-1.5 text-brand-gray">Contact</label>
           <input
             v-model="formData.contact"
             type="tel"
             @input="formatPhoneNumber"
             maxlength="16"
             placeholder="+90 555 555 5555"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500"
-            style="color: #171719"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold text-brand-dark focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         <div>
-          <label class="block text-sm font-bold mb-1.5" style="color: #737376">Trans Type</label>
+          <label class="block text-sm font-bold mb-1.5 text-brand-gray">Trans Type</label>
           <div class="flex gap-4">
             <label class="flex items-center cursor-pointer">
               <input
                 v-model="formData.transType"
                 type="radio"
                 value="Delivery"
-                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-offset-0"
-                style="color: #0B69FF; accent-color: #0B69FF;"
+                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-offset-0 accent-blue-600"
               />
-              <span class="ml-2 text-sm font-bold" style="color: #171719">Delivery</span>
+              <span class="ml-2 text-sm font-bold text-brand-dark">Delivery</span>
             </label>
             <label class="flex items-center cursor-pointer">
               <input
                 v-model="formData.transType"
                 type="radio"
                 value="Takeaway"
-                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-offset-0"
-                style="color: #0B69FF; accent-color: #0B69FF;"
+                class="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-offset-0 accent-blue-600"
               />
-              <span class="ml-2 text-sm font-bold" style="color: #171719">Takeaway</span>
+              <span class="ml-2 text-sm font-bold text-brand-dark">Takeaway</span>
             </label>
           </div>
         </div>
 
         <div>
-          <label class="block text-sm font-bold mb-1.5" style="color: #737376">Message to Client</label>
+          <label class="block text-sm font-bold mb-1.5 text-brand-gray">Message to Client</label>
           <textarea
             v-model="formData.notes"
             rows="3"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-            style="color: #171719"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold text-brand-dark focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           ></textarea>
         </div>
 
         <div class="relative dropdown-container">
-          <label class="block text-sm font-bold mb-1.5" style="color: #737376">Order Items</label>
+          <label class="block text-sm font-bold mb-1.5 text-brand-gray">Order Items</label>
           <div class="relative">
             <button
               type="button"
               @click="dropdownOpen = !dropdownOpen"
-              class="w-full px-3 py-2.5 border border-gray-300 rounded-md text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white flex items-center justify-between"
-              style="color: #171719"
+              class="w-full px-3 py-2.5 border border-gray-300 rounded-md text-sm font-bold text-brand-dark focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white flex items-center justify-between"
             >
               <span class="truncate">{{ formData.items.length > 0 ? formData.items.map(item => item.name).join(', ') : 'Select products' }}</span>
               <ChevronDownIcon class="w-5 h-5 transition-transform flex-shrink-0 ml-2" :class="{ 'rotate-180': dropdownOpen }" />
@@ -106,17 +100,16 @@
                   <input
                     type="checkbox"
                     :checked="isProductSelected(product.id)"
-                    class="w-4 h-4 rounded border-gray-300 focus:ring-2 focus:ring-offset-0"
-                    style="accent-color: #0B69FF;"
+                    class="w-4 h-4 rounded border-gray-300 focus:ring-2 focus:ring-offset-0 accent-blue-600"
                     @click.stop
                   />
                   <div class="flex items-center justify-between flex-1">
-                    <span class="text-sm font-bold" style="color: #171719">{{ product.name }}</span>
-                    <span class="text-sm font-bold" style="color: #737376">${{ product.price }}</span>
+                    <span class="text-sm font-bold text-brand-dark">{{ product.name }}</span>
+                    <span class="text-sm font-bold text-brand-gray">${{ product.price }}</span>
                   </div>
                 </div>
               </div>
-              <div v-if="products.length === 0" class="px-3 py-2.5 text-sm" style="color: #737376">
+              <div v-if="products.length === 0" class="px-3 py-2.5 text-sm text-brand-gray">
                 No products available
               </div>
             </div>
@@ -130,10 +123,10 @@
             class="flex items-center justify-between px-4 py-3.5"
           >
             <div class="flex-1">
-              <p class="text-sm font-bold" style="color: #171719">{{ item.name }}</p>
+              <p class="text-sm font-bold text-brand-dark">{{ item.name }}</p>
             </div>
             <div class="flex items-center gap-4">
-              <span class="text-sm font-bold" style="color: #737376">${{ item.price }}</span>
+              <span class="text-sm font-bold text-brand-gray">${{ item.price }}</span>
               <div class="flex items-center bg-gray-50 border border-gray-300 rounded-lg overflow-hidden">
                 <button
                   @click="decrementQuantity(item.id)"
@@ -149,8 +142,7 @@
                     :value="item.quantity"
                     @input="updateQuantity(item.id, $event)"
                     min="1"
-                    class="w-full h-full text-center text-sm font-bold bg-transparent border-0 focus:outline-none focus:ring-0"
-                    style="color: #171719"
+                    class="w-full h-full text-center text-sm font-bold text-brand-dark bg-transparent border-0 focus:outline-none focus:ring-0"
                   />
                 </div>
                 <button
@@ -175,18 +167,18 @@
       <div class="lg:col-span-5 px-6 pb-6 border-t lg:border-t-0 border-gray-300 relative">
         <div class="hidden lg:block absolute left-0 top-0 bottom-16 w-px bg-gray-300"></div>
 
-        <div class="p-4" style="background-color: #F6F6F6; border-radius: 4px;">
-          <h2 class="text-lg font-bold mb-4" style="color: #171719">Delivery Details</h2>
+        <div class="p-4 bg-brand-light-bg rounded">
+          <h2 class="text-lg font-bold mb-4 text-brand-dark">Delivery Details</h2>
 
           <div class="grid grid-cols-12 gap-2 pb-2">
             <div class="col-span-6">
-              <p class="text-xs font-bold" style="color: #737376">Order Item</p>
+              <p class="text-xs font-bold text-brand-gray">Order Item</p>
             </div>
             <div class="col-span-3 text-center">
-              <p class="text-xs font-bold" style="color: #737376">Number</p>
+              <p class="text-xs font-bold text-brand-gray">Number</p>
             </div>
             <div class="col-span-3 text-right">
-              <p class="text-xs font-bold" style="color: #737376">Cost</p>
+              <p class="text-xs font-bold text-brand-gray">Cost</p>
             </div>
           </div>
 
@@ -197,26 +189,26 @@
               class="grid grid-cols-12 gap-2"
             >
               <div class="col-span-6">
-                <p class="text-sm font-bold truncate" style="color: #171719">{{ item.name }}</p>
+                <p class="text-sm font-bold truncate text-brand-dark">{{ item.name }}</p>
               </div>
               <div class="col-span-3 text-center">
-                <p class="text-sm font-bold" style="color: #171719">{{ item.quantity }}</p>
+                <p class="text-sm font-bold text-brand-dark">{{ item.quantity }}</p>
               </div>
               <div class="col-span-3 text-right">
-                <p class="text-sm font-bold" style="color: #171719">${{ (item.price * item.quantity).toFixed(2) }}</p>
+                <p class="text-sm font-bold text-brand-dark">${{ (item.price * item.quantity).toFixed(2) }}</p>
               </div>
             </div>
           </div>
 
           <div v-else class="py-8 text-center">
-            <p class="text-sm" style="color: #737376">No items selected</p>
+            <p class="text-sm text-brand-gray">No items selected</p>
           </div>
         </div>
 
-      <div class="mt-4 p-4" style="background-color: #F6F6F6; border-radius: 4px;">
+      <div class="mt-4 p-4 bg-brand-light-bg rounded">
         <div class="flex justify-between items-center">
-          <p class="text-sm font-bold" style="color: #737376">Total Amount</p>
-          <p class="text-lg font-bold" style="color: #171719">${{ totalAmount.toFixed(2) }}</p>
+          <p class="text-sm font-bold text-brand-gray">Total Amount</p>
+          <p class="text-lg font-bold text-brand-dark">${{ totalAmount.toFixed(2) }}</p>
         </div>
       </div>
 
@@ -231,8 +223,7 @@
           @click="handleAddOrder"
           :disabled="!canSubmit"
           class="flex-1 px-4 py-2.5 text-white text-sm font-bold rounded-lg transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-          :style="canSubmit ? 'background-color: #0DC74E' : ''"
-          :class="canSubmit ? 'hover:opacity-90' : ''"
+          :class="canSubmit ? 'bg-brand-success hover:opacity-90' : 'bg-gray-300'"
         >
           Add Order
         </button>
