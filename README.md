@@ -1,6 +1,12 @@
-# Restaurant Order Management System
+# RoofStack Restaurant Order Management System
 
 A modern, responsive restaurant order management dashboard built with Nuxt 4, Vue 3, and Firebase. This application provides real-time order tracking, multi-status management, and an intuitive interface for restaurant staff.
+
+## Live Demo
+
+🚀 **[View Live Demo](https://roofstack-casestudy.vercel.app/)**
+
+The application is deployed on Vercel and available for testing.
 
 ## Features
 
