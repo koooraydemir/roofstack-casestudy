@@ -34,7 +34,10 @@
           <label class="block text-sm font-bold mb-1.5" style="color: #737376">Contact</label>
           <input
             v-model="formData.contact"
-            type="text"
+            type="tel"
+            @input="formatPhoneNumber"
+            maxlength="16"
+            placeholder="+90 555 555 5555"
             class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm font-bold focus:outline-none focus:ring-2 focus:ring-blue-500"
             style="color: #171719"
           />
@@ -380,6 +383,32 @@ const handleAddOrder = () => {
   formData.items = []
 
   emit('orderCreated')
+}
+
+const formatPhoneNumber = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  let value = input.value.replace(/\D/g, '')
+
+  if (!value.startsWith('90')) {
+    value = '90' + value
+  }
+
+  if (value.length > 12) {
+    value = value.slice(0, 12)
+  }
+
+  let formatted = '+90'
+  if (value.length > 2) {
+    formatted += ' ' + value.slice(2, 5)
+  }
+  if (value.length > 5) {
+    formatted += ' ' + value.slice(5, 8)
+  }
+  if (value.length > 8) {
+    formatted += ' ' + value.slice(8, 12)
+  }
+
+  formData.contact = formatted
 }
 
 const handleCancel = () => {
