@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run postinstall:*)",
+      "Bash(del composablesuseOrders.ts)",
+      "Bash(npm run build:*)",
+      "Bash(npm run test:run:*)",
+      "Bash(del testsunitorders.test.ts)",
+      "Bash(npm run dev:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
